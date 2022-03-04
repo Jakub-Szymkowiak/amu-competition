@@ -10,7 +10,7 @@ pd.options.mode.chained_assignment = "raise"
 
 class __CompetitionDataProcesser:
     def prep_data(self, data):
-        dt = data
+        dt = data.copy(deep = True)
         dt.loc[:, "task_no"] = dt["task_date"].astype("category").cat.codes
         dt.loc[:, "solution_date"] = pd.to_datetime(dt["solution_date"])
         dt = dt[dt["task_no"] != 0]
